@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: booking-trails
+
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      write_dates_as_timestamps: false
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    properties:
+      hibernate:
+        format-sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/booking_trails?createDatabaseIfNotExist=true
+    username: root
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
+    validation-query: SELECT 1
+  flyway:
+    enabled: true # Enable flyway.
+    locations: ${MIGRATION_LOCATIONS:classpath:db/migration} # locations of migrations scripts
+debug: false
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/css,text/plain
+    min-response-size: 1024
+
+
+---
+#### DEV PROFILE ####
+spring:
+  profiles: dev
